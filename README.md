@@ -20,3 +20,5 @@ Run instructions:
 2. Install npm dendencies by running <b>npm install</b>
 3. Update the floor plan in the "input.txt" file
 4. Run with <b>npm start</b>
+
+The program will output the kitchen location and the routes from all employees
