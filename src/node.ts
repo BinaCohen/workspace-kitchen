@@ -4,17 +4,20 @@ export enum NodeType {
     WALL = "W"
 }
 
+export type Route = [number, number][];
+
 export class Node {
     id: number;
     type: NodeType;
-    index: [ number, number ];
+    index: [number, number];
     visited: boolean;
     distance: number;
     parent: Node;
     sumOfDistances: number;
     connectedNodes: Node[];
+    employeesRoutes:  Route[];
 
-    constructor(id: number, type: NodeType, index: [ number, number ]) {
+    constructor(id: number, type: NodeType, index: [number, number]) {
         this.id = id;
         this.type = type;
         this.index = index;
@@ -23,5 +26,6 @@ export class Node {
         this.parent = null;
         this.sumOfDistances = 0;
         this.connectedNodes = new Array();
+        this.employeesRoutes = new Array();
     }
 }
