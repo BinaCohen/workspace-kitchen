@@ -1,0 +1,23 @@
+{
+  "name": "workspace-kitchen",
+  "version": "1.0.0",
+  "description": "Find space to kitchen inside a workspace",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node -r tsconfig-paths/register src/index.ts",
+    "start:dev": "nodemon",
+    "start:debug": "nodemon --config nodemon-debug.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bina Cohen <bina3420@gmail.com‏>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^11.11.6",
+    "nodemon": "^1.18.10",
+    "ts-loader": "^5.3.3",
+    "ts-node": "^8.0.3",
+    "tsc": "^1.20150623.0",
+    "tsconfig-paths": "^3.8.0",
+    "typescript": "^3.3.4000"
+  }
+}
