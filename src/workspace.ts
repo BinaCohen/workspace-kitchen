@@ -13,14 +13,14 @@ export class Workspace {
         this.initNodesMatrix();
         this.initNodeMap();
     }
-
+//Divide the string containing the file content into a matrix of characters
     private parseWorkspacePlanInput(input: string): void {
         const lines: string[] = input.split("\n");
         for (const line of lines) {
             this.workspacePlan.push(line.split(""));
         }
     }
-
+//Save workers indexes
     private saveWorkersIndexes() {
         for (let i = 0; i < this.workspacePlan.length; i++) {
             for (let j = 0; j < this.workspacePlan[i].length; j++) {
@@ -30,13 +30,13 @@ export class Workspace {
             }
         }
     }
-
+//Print workspace plan
     printWorkspacePlan(): void {
         for (const row of this.workspacePlan) {
             console.log(row.join(""));
         }
     }
-
+//Create a nodes matrix that save each element from the original matrix and adds an ID number 
     private initNodesMatrix(): void {
         let id = 0;
         for (let i = 0; i < this.workspacePlan.length; i++) {
@@ -48,7 +48,7 @@ export class Workspace {
             this.nodesMatrix.push(nodesRow);
         }
     }
-
+//Create a map and save all the spaces in the matrix by ID
     private initNodeMap(): void {
         for (let i = 0; i < this.nodesMatrix.length; i++) {
             for (let j = 0; j < this.nodesMatrix[i].length; j++) {
@@ -60,7 +60,7 @@ export class Workspace {
             }
         }
     }
-
+//For each of the spaces in the map save all spaces neighbors
     private setNodeConnections(node: Node): void {
         const [i, j] = node.index;
         const neighborsNodes: Node[] = new Array();
@@ -75,7 +75,9 @@ export class Workspace {
         }
     }
 
-    //dijkstra algorithm
+    //For each of the empty spaces save distance - the shortest path from the employee to the empty space (The amount of nodes).
+    //For each of the empty space sum the distances from all employees to the empty space.
+    //Implementing an Dijkstra algorithm for finding the distance.
     setKitchenLocation(): void {
         for (const employeeIndex of this.employeesIndexes) {
             const [i, j] = employeeIndex;
@@ -107,8 +109,10 @@ export class Workspace {
             }
         }
         const nodesArray = Array.from(this.nodesMap.values());
+        //Finding the empty sapce with the minimum amount of distances.
         const kitchenNode = nodesArray.filter(node => node.type === NodeType.SPACE)
             .reduce((kitchenNode, node) => node.sumOfDistances < kitchenNode.sumOfDistances ? node : kitchenNode, nodesArray[0]);
+        //If the floor plan does not allow for a kitchen
         if (kitchenNode.sumOfDistances === Infinity) {
             throw new Error("There is no space accessible for all employees!");
         }
